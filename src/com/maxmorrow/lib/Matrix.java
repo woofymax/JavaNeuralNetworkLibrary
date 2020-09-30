@@ -67,6 +67,18 @@ public class Matrix {
 		}
 		return temp;
 	}
+	public List<List<Double>> toFormattedArray() {
+		List<List<Double>> temp = new ArrayList<>();
+
+		for (int i = 0; i < rows; i++) {
+			temp.add(new ArrayList<>());
+			for (int j = 0; j < cols; j++) {
+				temp.get(i).add(data[i][j]);
+			}
+		}
+		System.out.println(temp.toString() + "Hello");
+		return temp;
+	}
 
 	public static Matrix subtract(Matrix a, Matrix b) {
 		Matrix temp = new Matrix(a.rows, a.cols);
@@ -102,7 +114,6 @@ public class Matrix {
 				temp.data[i][j] = sum;
 			}
 		}
-		System.out.println("multiplied");
 		return temp;
 	}
 
