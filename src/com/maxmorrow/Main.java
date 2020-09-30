@@ -1,13 +1,8 @@
 
 package com.maxmorrow;
 
-import com.maxmorrow.lib.Dataset;
-import com.maxmorrow.lib.NeuralNetwork;
+import com.maxmorrow.lib.Interactor;
 
-import java.lang.reflect.Array;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 
 public class Main {
@@ -56,7 +51,7 @@ public class Main {
 				{3, 5}
 		};
 //		Dataset dataset = new Dataset("XOR Gate output", X, Y, X[0].length - 1, 3, asdf[0].length - 1, true);
-		Dataset dataset = new Dataset("XOR Gate output", X, Y, X[0].length - 1, 3, 3, true);
+		Interactor dataset = new Interactor("XOR Gate output", X, Y, X[0].length - 1, 3, 3, true);
 		dataset.train();
 		List<String> predictions = dataset.predict(input);
 		System.out.println(predictions);

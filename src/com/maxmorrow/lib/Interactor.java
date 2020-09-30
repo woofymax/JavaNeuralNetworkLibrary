@@ -4,14 +4,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Dataset {
+public final class Interactor {
 	private double[][] X, Y, input;
 	private String type;
 	private int inputs, hidden, output;
 	public NeuralNetwork model;
 	public boolean round;
 
-	public Dataset(String type, double[][] X, int[] Y, int inputs, int hidden, int output, boolean round) {
+	public Interactor(String type, double[][] X, int[] Y, int inputs, int hidden, int output, boolean round) {
 		this.X = X;
 		this.Y = serializeOutputs(Y);
 		this.type = type;
