@@ -49,7 +49,7 @@ public class NeuralNetwork {
 
 	//	System.out.println(target.toArray().toString() + "Target <<<<<<<   " + output.toArray().toString() + "output <<<<<<<<<<<<" + Y[0] + "  y <");
 		Matrix error = Matrix.subtract(target, output);
-		Matrix gradient = output.dsigmoid();
+		Matrix gradient = output.derivative();
 		gradient.multiply(error);
 		gradient.multiply(l_rate);
 
@@ -64,7 +64,7 @@ public class NeuralNetwork {
 	//	System.out.println(who_T.toArray().toString() + "\n" +  error.toArray().toString() + "< Who_t and error" + "\n" + hidden_T.toArray().toString());
 		Matrix hidden_errors = Matrix.multiply(who_T, error);
 
-		Matrix h_gradient = hidden.dsigmoid();
+		Matrix h_gradient = hidden.derivative();
 		h_gradient.multiply(hidden_errors);
 		h_gradient.multiply(l_rate);
 

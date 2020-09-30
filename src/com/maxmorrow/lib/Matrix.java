@@ -27,6 +27,21 @@ public class Matrix {
 		}
 	}
 
+	public static Matrix add(Matrix a, Matrix b) {
+
+		if (a.cols != b.cols || a.rows != b.rows){
+			System.out.println("Shape Mismatch");
+			return null;
+		}
+		Matrix temp = new Matrix(a.cols, a.rows);
+		for (int i = 0; i < a.rows; i++) {
+			for (int j = 0; j < a.cols; j++) {
+				temp.data[i][j] = a.data[i][j] + b.data[i][j];
+			}
+		}
+		return temp;
+	}
+
 	public void add(int scaler) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
@@ -67,6 +82,7 @@ public class Matrix {
 		}
 		return temp;
 	}
+
 	public List<List<Double>> toFormattedArray() {
 		List<List<Double>> temp = new ArrayList<>();
 
@@ -101,6 +117,13 @@ public class Matrix {
 		return temp;
 	}
 
+	public void transpose() {
+		for (int i = 0; i < this.rows; i++) {
+			for (int j = 0; j < this.cols; j++) {
+				this.data[j][i] = this.data[i][j];
+			}
+		}
+	}
 	public static Matrix multiply(Matrix a, Matrix b) {
 		Matrix temp = new Matrix(a.rows, b.cols);
 		for (int i = 0; i < temp.rows; i++) {
@@ -143,7 +166,7 @@ public class Matrix {
 
 	}
 
-	public Matrix dsigmoid() {
+	public Matrix derivative() {
 		Matrix temp = new Matrix(rows, cols);
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++)
