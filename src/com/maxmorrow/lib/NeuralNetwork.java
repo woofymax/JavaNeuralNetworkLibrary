@@ -25,7 +25,6 @@ public class NeuralNetwork {
 		Matrix output = Matrix.multiply(weights_ho, hidden);
 		output.add(bias_o);
 		output.sigmoid();
-
 		return output.toArray();
 	}
 
@@ -48,7 +47,7 @@ public class NeuralNetwork {
 
 		Matrix target = Matrix.fromArray(Y);
 
-//deub		System.out.println(target.toArray().toString() + "Target <<<<<<<   " + output.toArray().toString() + "output <<<<<<<<<<<<" + Y[0] + "  y <");
+	//	System.out.println(target.toArray().toString() + "Target <<<<<<<   " + output.toArray().toString() + "output <<<<<<<<<<<<" + Y[0] + "  y <");
 		Matrix error = Matrix.subtract(target, output);
 		Matrix gradient = output.dsigmoid();
 		gradient.multiply(error);
@@ -62,7 +61,7 @@ public class NeuralNetwork {
 
 		Matrix who_T = Matrix.transpose(weights_ho);
 
-//deub System.out.println(who_T.toArray().toString() + error.toArray().toString() + "< Who_t and error");
+	//	System.out.println(who_T.toArray().toString() + "\n" +  error.toArray().toString() + "< Who_t and error" + "\n" + hidden_T.toArray().toString());
 		Matrix hidden_errors = Matrix.multiply(who_T, error);
 
 		Matrix h_gradient = hidden.dsigmoid();

@@ -1,7 +1,6 @@
 package com.maxmorrow.lib;
 
-import com.maxmorrow.lib.NeuralNetwork;
-
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +11,9 @@ public final class Dataset {
 	public NeuralNetwork model;
 	public boolean round;
 
-	public Dataset(String type, double[][] X, double[][] Y, int inputs, int hidden, int output, boolean round) {
+	public Dataset(String type, double[][] X, int[] Y, int inputs, int hidden, int output, boolean round) {
 		this.X = X;
-//		this.Y = serializeOutputs(Y);
-		this.Y = Y;
+		this.Y = serializeOutputs(Y);
 		this.type = type;
 		this.inputs = inputs;
 		this.hidden = hidden;
@@ -61,14 +59,8 @@ public final class Dataset {
 		model = new NeuralNetwork(inputs, hidden, output);
 
 
-		double[][] y = {
-				{1.0, 0.0, 0.0 },
-				{0.0, 1.0, 0.0},
-				{0.0, 1.0, 0.0},
-				{1.0, 0.0, 0.0},
-				{0.0, 0.0, 1.0}
-		};
-		model.fit(X, y, 500000);
+		System.out.println(deserializeOutputs(Y) + "deserialized Y");
+		model.fit(X, Y, 500000);
 
 	}
 
@@ -87,26 +79,33 @@ public final class Dataset {
 		return out;
 	}
 
-	public double[] deserializeOutputs(double[][] input) {
-		double[] temp = new double[input.length];
-		for (double[] value : input
-		) {
-			for (int i = 0; i < value.length; i++) {
-				if (value[i] == 1) {
-					temp[i] = i;
-				}
+	public ArrayList<Integer> deserializeOutputs(double[][] input) {
+		ArrayList<ArrayList<Double>> asdf = new ArrayList<>();
+		for (int i = 0; i < input.length; i++) {
+			asdf.add(new ArrayList<>());
+			for (int j = 0; j < input[0].length; j++) {
+				asdf.get(i).add(input[i][j]);
 			}
 		}
+		System.out.println(asdf.toString() + "asdf tostring");
 
-		return temp;
-	}
-	public double[][] roundOutputs(double[][] outs) {
-		double[][] temp = new double[outs.length][outs[0].length];
-		for (int i = 0; i < outs.length; i++) {
-			for (int j = 0; j < outs[0].length; j++) {
-				temp[i][j] = Math.round(outs[i][j]);
+		ArrayList<ArrayList<Double>> roundedOutput = new ArrayList<>();
+
+
+
+		for (int i = 0; i < asdf.size(); i++) {
+			roundedOutput.add(new ArrayList<>());
+			for (int j = 0; j < asdf.get(0).size(); j++) {
+
+				roundedOutput.get(i).add((double) Math.round(asdf.get(i).get(j)));
+
 			}
 		}
-		return temp;
+		ArrayList<Integer> fixedOutputs = new ArrayList<>();
+		for (ArrayList<Double> a: roundedOutput
+		) {
+			fixedOutputs.add(a.indexOf(1.0));
+		}
+		return fixedOutputs;
 	}
 }

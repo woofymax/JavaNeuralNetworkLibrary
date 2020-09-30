@@ -96,10 +96,13 @@ public class Matrix {
 				double sum = 0;
 				for (int k = 0; k < a.cols; k++) {
 					sum += a.data[i][k] * b.data[k][j];
+
 				}
+
 				temp.data[i][j] = sum;
 			}
 		}
+		System.out.println("multiplied");
 		return temp;
 	}
 
