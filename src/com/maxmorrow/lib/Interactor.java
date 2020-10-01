@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Interactor {
+
 	private double[][] X, Y, input;
 	private String type;
 	private int inputs, hidden, output;
@@ -37,6 +38,10 @@ public final class Interactor {
 		return Y;
 	}
 
+	/*
+	* Function to convert integer outputs of the training data to work in the NN
+	*
+	*/
 	public double[][] serializeOutputs(int[] Y) {
 		int len = 0;
 		for (int value : Y) {
@@ -66,7 +71,7 @@ public final class Interactor {
 
 	public List<String> predict(double[][] input) {
 		List<Double> output;
-		ArrayList<String> out = new ArrayList<String>();
+		ArrayList<String> out = new ArrayList<>();
 		for (double d[] : input) {
 			output = model.predict(d);
 			if (round) {

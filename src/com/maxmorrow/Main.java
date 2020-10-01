@@ -6,7 +6,17 @@ import com.maxmorrow.lib.Interactor;
 import java.util.List;
 
 public class Main {
-
+	//region ANSI colors definition
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	public static final String ANSI_BLUE = "\u001B[34m";
+	public static final String ANSI_PURPLE = "\u001B[35m";
+	public static final String ANSI_CYAN = "\u001B[36m";
+	public static final String ANSI_WHITE = "\u001B[37m";
+	//endregion
 	static double[][] X = {
 			{0, 0},
 			{1, 0},
@@ -19,6 +29,7 @@ public class Main {
 	};
 
 	public static void main(String[] args) {
+
 		double[][] input = {
 				{0, 0},
 				{1, 0},
@@ -33,7 +44,7 @@ public class Main {
 
 		//storage and output of NN predictions
 		List<String> predictions = simplifier.predict(input);
-		System.out.println(predictions);
+		System.out.println(ANSI_GREEN +  predictions + ANSI_RESET);
 
 	}
 
