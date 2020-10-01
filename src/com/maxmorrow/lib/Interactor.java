@@ -45,7 +45,7 @@ public final class Interactor {
 
 			}
 		}
-		System.out.println(len);
+		//System.out.println(len);
 		double[][] temp = new double[Y.length][len];
 
 		for (int i = 0; i < Y.length; i++) {
@@ -59,8 +59,8 @@ public final class Interactor {
 		model = new NeuralNetwork(inputs, hidden, output);
 
 
-		System.out.println(deserializeOutputs(Y) + "deserialized Y");
-		model.fit(X, Y, 500000);
+		//System.out.println(deserializeOutputs(Y) + "deserialized Y");
+		model.fit(X, Y, 5000);
 
 	}
 
@@ -87,7 +87,7 @@ public final class Interactor {
 				asdf.get(i).add(input[i][j]);
 			}
 		}
-		System.out.println(asdf.toString() + "asdf tostring");
+		//System.out.println(asdf.toString() + "asdf tostring");
 
 		ArrayList<ArrayList<Double>> roundedOutput = new ArrayList<>();
 

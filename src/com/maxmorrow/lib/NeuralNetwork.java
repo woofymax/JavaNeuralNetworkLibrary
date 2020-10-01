@@ -39,10 +39,12 @@ public class NeuralNetwork {
 		Matrix input = Matrix.fromArray(X);
 		Matrix hidden = Matrix.multiply(weights_ih, input);
 		hidden.add(bias_h);
+		//System.out.println("after bias_h");
 		hidden.sigmoid();
 
 		Matrix output = Matrix.multiply(weights_ho, hidden);
 		output.add(bias_o);
+		//System.out.println("after bias_o");
 		output.sigmoid();
 
 		Matrix target = Matrix.fromArray(Y);

@@ -17,32 +17,8 @@ public class Main {
 	static int[] Y = {
 			0, 1, 1, 0, 2
 	};
-	static double[][] asdf = {
-			{1.0, 0.0, 0.0}
-	};
 
 	public static void main(String[] args) {
-		int len = 0;
-		for (int value : Y) {
-			if (len - 1 < value) {
-				len = value + 1;
-
-			}
-		}
-		System.out.println(len);
-		double[][] temp = new double[Y.length][len];
-
-		for (int i = 0; i < Y.length; i++) {
-			temp[i][Y[i]] = 1;
-		}
-		for (double[] a : temp
-		) {
-			for (double b : a
-			) {
-				System.out.println(b);
-			}
-		}
-
 		double[][] input = {
 				{0, 0},
 				{1, 0},
@@ -50,10 +26,13 @@ public class Main {
 				{1, 1},
 				{3, 5}
 		};
-//		Dataset dataset = new Dataset("XOR Gate output", X, Y, X[0].length - 1, 3, asdf[0].length - 1, true);
-		Interactor dataset = new Interactor("XOR Gate output", X, Y, X[0].length - 1, 3, 3, true);
-		dataset.train();
-		List<String> predictions = dataset.predict(input);
+
+		// Instance of Interactor class to simplify the use of the NN library
+		Interactor simplifier = new Interactor("XOR Gate output", X, Y, 2, 10, 3, true);
+		simplifier.train();
+
+		//storage and output of NN predictions
+		List<String> predictions = simplifier.predict(input);
 		System.out.println(predictions);
 
 	}

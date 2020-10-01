@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Matrix {
 	double[][] data;
-	int rows, cols;
+	public int rows, cols;
 
 	public Matrix(int rows, int cols) {
 		data = new double[rows][cols];
@@ -92,7 +92,6 @@ public class Matrix {
 				temp.get(i).add(data[i][j]);
 			}
 		}
-		System.out.println(temp.toString() + "Hello");
 		return temp;
 	}
 
