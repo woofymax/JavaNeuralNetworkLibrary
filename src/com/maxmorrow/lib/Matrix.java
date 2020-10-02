@@ -20,6 +20,7 @@ public class Matrix {
 		}
 	}
 
+	public static NNMatrix add(NNMatrix a, NNMatrix b) {
 
 		if (a.cols != b.cols || a.rows != b.rows){
 			System.out.println("Shape Mismatch");
