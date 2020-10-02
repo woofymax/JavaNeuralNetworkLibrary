@@ -6,18 +6,11 @@ import java.util.List;
 public class Matrix {
 	double[][] data;
 	public int rows, cols;
-
-	public Matrix(int rows, int cols) {
-		data = new double[rows][cols];
+	public Matrix (int rows, int cols, double[][] data){
+		this.data = data;
 		this.rows = rows;
 		this.cols = cols;
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				data[i][j] = Math.random() * 2 - 1;
-			}
-		}
 	}
-
 	public void print() {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
@@ -27,13 +20,12 @@ public class Matrix {
 		}
 	}
 
-	public static Matrix add(Matrix a, Matrix b) {
 
 		if (a.cols != b.cols || a.rows != b.rows){
 			System.out.println("Shape Mismatch");
 			return null;
 		}
-		Matrix temp = new Matrix(a.cols, a.rows);
+		NNMatrix temp = new NNMatrix(a.cols, a.rows);
 		for (int i = 0; i < a.rows; i++) {
 			for (int j = 0; j < a.cols; j++) {
 				temp.data[i][j] = a.data[i][j] + b.data[i][j];
@@ -51,7 +43,7 @@ public class Matrix {
 		}
 	}
 
-	public void add(Matrix m) {
+	public void add(NNMatrix m) {
 		if (cols != m.cols || rows != m.rows) {
 			System.out.println("Shape Mismatch");
 			return;
@@ -64,8 +56,8 @@ public class Matrix {
 		}
 	}
 
-	public static Matrix fromArray(double[] x) {
-		Matrix temp = new Matrix(x.length, 1);
+	public static NNMatrix fromArray(double[] x) {
+		NNMatrix temp = new NNMatrix(x.length, 1);
 		for (int i = 0; i < x.length; i++)
 			temp.data[i][0] = x[i];
 		return temp;
@@ -95,8 +87,8 @@ public class Matrix {
 		return temp;
 	}
 
-	public static Matrix subtract(Matrix a, Matrix b) {
-		Matrix temp = new Matrix(a.rows, a.cols);
+	public static NNMatrix subtract(NNMatrix a, NNMatrix b) {
+		NNMatrix temp = new NNMatrix(a.rows, a.cols);
 		for (int i = 0; i < a.rows; i++) {
 			for (int j = 0; j < a.cols; j++) {
 				temp.data[i][j] = a.data[i][j] - b.data[i][j];
@@ -106,8 +98,8 @@ public class Matrix {
 
 	}
 
-	public static Matrix transpose(Matrix a) {
-		Matrix temp = new Matrix(a.cols, a.rows);
+	public static NNMatrix transpose(NNMatrix a) {
+		NNMatrix temp = new NNMatrix(a.cols, a.rows);
 		for (int i = 0; i < a.rows; i++) {
 			for (int j = 0; j < a.cols; j++) {
 				temp.data[j][i] = a.data[i][j];
@@ -123,8 +115,8 @@ public class Matrix {
 			}
 		}
 	}
-	public static Matrix multiply(Matrix a, Matrix b) {
-		Matrix temp = new Matrix(a.rows, b.cols);
+	public static NNMatrix multiply(NNMatrix a, NNMatrix b) {
+		NNMatrix temp = new NNMatrix(a.rows, b.cols);
 		for (int i = 0; i < temp.rows; i++) {
 			for (int j = 0; j < temp.cols; j++) {
 				double sum = 0;
@@ -139,7 +131,7 @@ public class Matrix {
 		return temp;
 	}
 
-	public void multiply(Matrix a) {
+	public void multiply(NNMatrix a) {
 		for (int i = 0; i < a.rows; i++) {
 			for (int j = 0; j < a.cols; j++) {
 				this.data[i][j] *= a.data[i][j];
@@ -155,31 +147,5 @@ public class Matrix {
 			}
 		}
 
-	}
-
-	public void sigmoid() {
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++)
-				this.data[i][j] = 1 / (1 + Math.exp(-this.data[i][j]));
-		}
-
-	}
-
-	public Matrix derivative() {
-		Matrix temp = new Matrix(rows, cols);
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++)
-				temp.data[i][j] = this.data[i][j] * (1 - this.data[i][j]);
-		}
-		return temp;
-
-	}
-
-	public void relu() {
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				data[i][j] = Math.max(this.data[i][j], 0);
-			}
-		}
 	}
 }

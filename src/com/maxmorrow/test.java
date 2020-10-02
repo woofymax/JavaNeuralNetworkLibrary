@@ -1,10 +1,10 @@
 package com.maxmorrow;
 
-import com.maxmorrow.lib.Matrix;
+import com.maxmorrow.lib.NNMatrix;
 
 public class test {
 	public static void main(String[] args) {
-		Matrix matrix = new Matrix(5, 5);
+		NNMatrix matrix = new NNMatrix(5, 5);
 		matrix.toFormattedArray();
 		System.out.println("asdfasdfawsd");
 	}
